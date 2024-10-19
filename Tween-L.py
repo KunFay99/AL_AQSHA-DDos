@@ -35,7 +35,7 @@ print(Fore.RED+banner)
 		[+] Developer : Kanao#7218 [ """+Fore.WHITE+"""SecretsX ]"""
 		print(Fore.WHITE+"""
 		[+] Type `help` If You Are A Beginner [+]
-			""")
+	 """)
 
 	def start_attack(self,host,port=None):
 		self.sock=socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
