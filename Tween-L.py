@@ -31,14 +31,14 @@ threadcount = 25
 #How we update
 def update():
     time.sleep(3)
-    webbrowser.open('https://KunFay99.tk/BAIT-DDoS/')
+    webbrowser.open('https://github.com/KunFay99/Tween-L/')
 
 def checkver():
     content = open("ver.txt",r) 
     ver = content.read()
 
 def comparever():
-    latver = requests.get("https://KunFay99.tk/BAIT-DDoS/latver.txt")
+    latver = requests.get("https://https://github.com/KunFay99/Tween-L/latver.txt")
     latver = latver.text
     if letver != ver:
         print("Updating now. We are sending you the updated url download")
