@@ -5,16 +5,17 @@ print("""[0] pip\n[1] pip3\nWhich one do you use?""")
 c = input(">>>: ")
 if c == "0":
     os.system("pkg install python")
-    os.system("pkg install python2")
     os.system("pkg install python3")
-    os.system("pkg install slowloris")
-    
+    os.system("python3 -m pip install --upgrade-pip")
+    os.system("pip install colorama")
+    os.system("pip install tqdm")
+   
 
-c = input(">>>: ")
-if c == "1":
+elif c == "1":
     os.system("pkg install python")
-    os.system("pkg install python2")
     os.system("pkg install python3")
-    os.system("pkg install slowloris")
-    
+    os.system("python3 -m pip install --upgrade-pip")
+    os.system("pip install colorama")
+    os.system("pip install tqdm")
+   
 print("Done.")
