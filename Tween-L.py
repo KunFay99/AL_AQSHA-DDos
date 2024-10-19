@@ -10,7 +10,7 @@ import tqdm
 colorama.init()
 
 currentVersionNumber = "v3.2.0"
-BANNER1 = colored('''
+BANNER1 = colored"""
  |:::::::::::|                                            / ::
  ———— ::————/    ___   ____    ____   ___   ____          | ::
     | ;:\ ::    / ::|/:::::\  /:::::\ | ::: | ::          | ::
@@ -21,7 +21,7 @@ BANNER1 = colored('''
 ||_________[[ BEIGADE ATTACKER SNIPER ELITE  ** By:Kun99 ]]__________||''', 'red')
 ||_________[[                                                        ||
 #####################################################################||''', 'blue')
- 'blue')
+"""
 BANNER2 = colored('''    
 BANNER3 = colored('''    
 BANNER4 = colored('''    
