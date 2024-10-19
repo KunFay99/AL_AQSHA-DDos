@@ -1,5 +1,3 @@
-socket
-random
-string
-threading
+requests
+colorama
 os
