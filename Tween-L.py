@@ -32,7 +32,7 @@ def graphics(self):
 print(Fore.RED+banner)
 		print(Fore.YELLOW+"""
 		[+] An Advance SERANGAN-UMUM Using Sockets Written in Python [+]"""+Fore.GREEN+"""
-		[+] Developer : Kanao#7218 [ """+Fore.WHITE+"""SecretsX ]""")
+		[+] Developer : Kanao#7218 [ """+Fore.WHITE+"""SecretsX ]"""
 		print(Fore.WHITE+"""
 		[+] Type `help` If You Are A Beginner [+]
 			""")
