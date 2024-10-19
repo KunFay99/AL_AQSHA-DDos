@@ -14,10 +14,10 @@ class SockFlood:
 		self.portnum=None
 		self.threads=None
 
-	def graphics(self):
-		banner="""
+def graphics(self):
+    banner="""
 
-:::::::::::|                                            / ::
+ :::::::::::|                                             / ::
  ———— ::————/    ___   ____    ____   ___   ____          | ::
     | ;:\ ::    / ::|/:::::\  /:::::\ | ::: | ::          | ::
     | :: \ :: :: :: / :: | ::/ :: | ::| :: :: ::  _____   | ::
