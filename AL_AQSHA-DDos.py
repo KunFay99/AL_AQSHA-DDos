@@ -11,9 +11,12 @@ A = '\033[32m'
 N = '\033[33ma'
 O = '\033[0m'
 
-
+# Clear terminal screen
 os.system('clear')
-print(" ")
+
+# Function to display header
+def display_header():
+    header_lines = (" ")
 print("\033[31m      ©    ©       \033[0m")
 print("\033[33m     © ©   ©         \033[0m")              
 print("\033[1m    ©   ©  © ©       \033[0m") 
@@ -84,7 +87,7 @@ def start_attack(target_ip, target_port, packet, thread_count, method, duration)
 
 # Main program flow
 def main():
-    display_banner()  # Show the banner initially
+    display_header()  # Show the header initially
     target_ip, target_port, attack_time, packet, thread_count, method = get_user_input()
     display_input_summary(target_ip, target_port, attack_time, packet, thread_count, method)
 
