@@ -1,3 +1,4 @@
+# _*_ coding: utf-8 _*_
 import socket
 import threading
 import os
@@ -87,7 +88,7 @@ def start_attack(target_ip, target_port, packet, thread_count, method, duration)
 
 # Main program flow
 def main():
-    'display_header'()  # Show the header initially
+    display_header()  # Show the header initially
     target_ip, target_port, attack_time, packet, thread_count, method = get_user_input()
     display_input_summary(target_ip, target_port, attack_time, packet, thread_count, method)
 
