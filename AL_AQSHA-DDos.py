@@ -38,20 +38,20 @@ print("\033[32m||======================================BY: ZANAHMAD ====\033[0m"
 
 # Prompt user for input
 def get_user_input():
-    print(" +======================================================+")
+    print("\033[33m+======================================================+\033[0m")
     target_ip = input("\033[32m | Target IP : \033[0m").strip()
     target_port = input("\033[31m | Target Port : \033[0m").strip()
     attack_time = input("\033[33m | Time (seconds) : \033[0m").strip()
     packet = input("\033[33m | Packet : \033[0m").strip()
     thread_count = input("\033[33m | Thread : \033[0m").strip()
     method = input("\032[1m | Method (UDP/TCP & UDP Mix) : \033[0m").strip().lower()
-    print(" ========================================================")
+    print("\033[33m=======================================================\033[0m")
 
     return target_ip, int(target_port), int(attack_time), int(packet), int(thread_count), method
 
 # Display input summary after user provides inputs
 def display_input_summary(target_ip, target_port, attack_time, packet, thread_count, method):
-    display_banner()  # Show the banner again
+    display_header()  # Show the banner again
     print(" +======================================================+")
     print(f" | Target IP : {target_ip:<40}|")
     print(f" | Target Port : {target_port:<40}|")
