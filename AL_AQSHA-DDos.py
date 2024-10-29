@@ -35,12 +35,12 @@ print("\033[32m||======================================BY: ZANAHMAD ====\033[0m"
 # Prompt user for input
 def get_user_input():
     print(" +======================================================+")
-    target_ip = input(" | Target IP : ").strip()
-    target_port = input(" | Target Port : ").strip()
-    attack_time = input(" | Time (seconds) : ").strip()
-    packet = input(" | Packet : ").strip()
-    thread_count = input(" | Thread : ").strip()
-    method = input(" | Method (UDP/TCP & UDP Mix) : ").strip().lower()
+    target_ip = input("\033[32m | Target IP : \033[0m").strip()
+    target_port = input("\033[31m | Target Port : \033[0m").strip()
+    attack_time = input("\033[33m | Time (seconds) : \033[0m").strip()
+    packet = input("\033[33m | Packet : \033[0m").strip()
+    thread_count = input("\033[33m | Thread : \033[0m").strip()
+    method = input("\033[1m | Method (UDP/TCP & UDP Mix) : \033[0m").strip().lower()
     print(" ========================================================")
 
     return target_ip, int(target_port), int(attack_time), int(packet), int(thread_count), method
@@ -84,7 +84,6 @@ def start_attack(target_ip, target_port, packet, thread_count, method, duration)
 
 # Main program flow
 def main():
-    display_banner()  # Show the banner initially
     target_ip, target_port, attack_time, packet, thread_count, method = get_user_input()
     display_input_summary(target_ip, target_port, attack_time, packet, thread_count, method)
 
