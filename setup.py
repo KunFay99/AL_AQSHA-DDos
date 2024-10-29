@@ -7,14 +7,14 @@ if c == "0":
     os.system("apt install python")
     os.system("apt install python2")
     os.system("apt install python3")
-    os.system("pip install slowloris")
+    os.system("pip install --upgrade pip")
    
 
 elif c == "1":
     os.system("apt install python")
     os.system("apt install python2")
     os.system("apt install python3")
-    os.system("pip3 install slowloris")
+    os.system("pip3 install upgrade pip")
    
    
 print("Done.")
