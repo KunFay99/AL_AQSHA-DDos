@@ -2,14 +2,14 @@
 # Sniper Elite
 # klon repository
 
- - git clone https://github.com/KunFay99/Khanza-DDos.git
+ - git clone https://github.com/KunFay99/AL_AQSHA-DDos.git
 
- - cd Khanza-DDos
+ - cd AL_AQSHA-DDos
 
  - python setup.py
 
  - pip install -r requirements.txt
 
- - python3 Khanza-DDos.py
+ - python3 AL_AQSHA-DDos.py
 
    
