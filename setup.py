@@ -4,16 +4,16 @@ print("""[0] pip\n[1] pip3\nWhich one do you use?""")
 
 c = input(">>>: ")
 if c == "0":
-    os.system("apt install python")
-    os.system("apt install python2")
-    os.system("apt install python3")
+    os.system("apt-get install python")
+    os.system("apt-get install python2")
+    os.system("apt-get install python3")
     os.system("pip install --upgrade pip")
    
 
 elif c == "1":
-    os.system("apt install python")
-    os.system("apt install python2")
-    os.system("apt install python3")
+    os.system("apt-get install python")
+    os.system("apt-get install python2")
+    os.system("apt-get install python3")
     os.system("pip3 install --upgrade pip")
    
    
